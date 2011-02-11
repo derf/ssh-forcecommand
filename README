@@ -1,0 +1,52 @@
+ssh-forcecommand - Whitelist remote commands via ssh config
+
+ssh-forcecommand is a trivial script to safely execute remote commands via
+ssh.  It is especially aimed at automated remote commands (so, ssh keys not
+secured via password), where a compromise of the remote system (-> private
+key) could also compromise the local system.
+
+To prevent this, you can put the forcecommand into the ssh config
+(authorized_keys, to be precise), so the remote system can only execute a set
+of statically defined commands.  This way, compromising the local system is
+made much more difficult.
+
+
+SETUP
+-----
+
+First, run "make install".  You will now have the script in
+/usr/local/lib/ssh-forcecommand.
+
+Next, for every publickey you want to restrict to the forcecommand, add the
+following line to ~/.ssh/authorized_keys:
+
+command="/usr/local/lib/ssh-forcecommand /etc/forcecommand/foo.cfg",no-agent-forwarding,no-port-forwarding,no-pty,no-X11-forwarding ssh-rsa yourfunkykey
+
+command="..." sets the forcecommand, the other options disable potentially
+dangerous stuff like port forwardig (Though that is not meant to be an
+exhaustive list).
+
+As you see, the forcecommand accepts exactly one argument, which is the config
+defining the allowed commands.  This way, you can restrict different ssh keys
+to different sets of commands.  For example configs, see the examples
+directory.
+
+
+USAGE
+-----
+
+Assume you have the following line in your forcecommand config:
+
+home      = tar -C / -cf - home
+
+Now, on the remote system, run this:
+
+ssh user@yourhost home
+
+On your system, this will translate to:
+
+tar -C / -cf - home
+
+The forcecommand is 100% static, variables or appending of stuff is not
+supported.  No part of the original ssh command will be dynamically used in
+the resulting command.  This makes ssh-forcecommand quite secure.
