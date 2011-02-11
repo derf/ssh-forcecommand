@@ -5,12 +5,12 @@
 #
 # SSH forcecommand to be used for nagios ssh checks etc.
 # Example line for ssh authorized_keys file:
-# command="/usr/local/lib/nagios/forcecommand /etc/nagios/forcecommand.cfg",no-agent-forwarding,no-port-forwarding,no-pty,no-X11-forwarding $key
+# command="/usr/local/lib/ssh-forcecommand /etc/forcecommand/backup.cfg",no-agent-forwarding,no-port-forwarding,no-pty,no-X11-forwarding $key
 #
 # Configfile format:
 # ssh_command = real_command
 # Example:
-# check_users = /usr/lib/nagios/plugins/check_users -w 5 -c 10
+# home = tar -C / -cf - home
 
 use strict;
 use warnings;
