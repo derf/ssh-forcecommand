@@ -1,0 +1,6 @@
+simple = echo foo
+other  = echo bar
+nospace=echo 'nospace!'
+much space      =     echo 'dude, lots of space'
+spaceout = echo 'space   is   beautiful'
+equal = echo foo = bar a=b

@@ -12,7 +12,10 @@ install:
 	@cp lib/ssh-forcecommand ${lib_dir}
 	@chmod 755 ${lib_dir}/ssh-forcecommand
 
+test:
+	@prove
+
 uninstall:
 	rm -f ${lib_dir}/ssh-forcecommand
 
-.PHONY: all install uninstall
+.PHONY: all install test uninstall
