@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# Copyright © 2010 by Daniel Friesel <derf@finalrewind.org>
+# Copyright © 2010,2011 by Daniel Friesel <derf@finalrewind.org>
 # License: WTFPL:
 #   0. You just DO WHAT THE FUCK YOU WANT TO.
 #
@@ -22,7 +22,7 @@ my $input = $ENV{'SSH_ORIGINAL_COMMAND'} or die("No command\n");;
 open(my $conf, '<', $conffile) or die("Can't open $conffile: $!\n");
 
 while (my $line = <$conf>) {
-	my ($key, $value) = split(/ \s* = \s* /x, $line);
+	my ($key, $value) = ($line =~ m{ ^ ([^=]+?) \s* = \s* (.+) $ }x);
 	if ($key and $value) {
 		$commands{$key} = $value;
 	}
