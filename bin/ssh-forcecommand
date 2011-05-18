@@ -84,7 +84,7 @@ the resulting command.  This makes ssh-forcecommand quite secure.
 
 =head1 AUTHOR
 
-Copyright (C) 2011 by Daniel Friesel E<gt>derf@finalrewind.orgE<lt>
+Copyright (C) 2010,2011 by Daniel Friesel E<lt>derf@finalrewind.orgE<gt>
 
 =head1 LICENSE
 
