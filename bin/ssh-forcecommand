@@ -6,7 +6,7 @@ my $conffile = shift or die("Usage: $0 <configfile>\n");
 my $input = $ENV{SSH_ORIGINAL_COMMAND} or die("No command\n");;
 
 my %command;
-my $VERSION = '0.0';
+my $VERSION = '1.0';
 
 open(my $conf, '<', $conffile) or die("Can't open $conffile: $!\n");
 
@@ -39,6 +39,10 @@ In .ssh/authorized_keys:
 
     command="/usr/local/lib/ssh-forcecommand /etc/forcecommand/backup",no-agent-forwarding,no-port-
     forwarding,no-pty,no-X11-forwarding $key
+
+=head1 VERSION
+
+This is B<ssh-forcecommand> version 1.0
 
 =head1 DESCRIPTION
 

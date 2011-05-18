@@ -1,0 +1,7 @@
+ssh-forcecommand 1.0 - Wed May 18 2011
+
+    * Initial release
+    * Put "key = value" pairs in config
+    * command="/usr/local/bin/ssh-forcecommand /etc/forcecommand/config" in
+      ssh/authorized_keys
+    * static operation, no variables, appending or anything
