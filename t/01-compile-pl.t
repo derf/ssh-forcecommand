@@ -5,4 +5,4 @@ use 5.010;
 use Test::More;
 use Test::Compile;
 
-all_pl_files_ok('lib/ssh-forcecommand');
+all_pl_files_ok('bin/ssh-forcecommand');

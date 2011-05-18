@@ -13,7 +13,7 @@ sub test_fc {
 	my $out = ($conf{'out'} ? $conf{'out'} . "\n" : q{});
 	my $err = ($conf{'err'} ? $conf{'err'} . "\n" : q{});
 
-	my $cmd = Test::Command->new(cmd => 'lib/ssh-forcecommand t/config');
+	my $cmd = Test::Command->new(cmd => 'bin/ssh-forcecommand t/config');
 
 	$cmd->stdout_is_eq($out);
 	$cmd->stderr_is_eq($err);
