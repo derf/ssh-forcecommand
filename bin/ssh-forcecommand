@@ -3,23 +3,25 @@ use strict;
 use warnings;
 
 my $conffile = shift or die("Usage: $0 <configfile>\n");
-my %commands;
-my $input = $ENV{'SSH_ORIGINAL_COMMAND'} or die("No command\n");;
+my $input = $ENV{SSH_ORIGINAL_COMMAND} or die("No command\n");;
 
+my %command;
 my $VERSION = '0.0';
 
 open(my $conf, '<', $conffile) or die("Can't open $conffile: $!\n");
 
 while (my $line = <$conf>) {
 	my ($key, $value) = ($line =~ m{ ^ ([^=]+?) \s* = \s* (.+) $ }x);
+
 	if ($key and $value) {
-		$commands{$key} = $value;
+		$command{$key} = $value;
 	}
 }
 close($conf) or die("Cannot close $conffile: $!\n");
 
-if (exists $commands{$input}) {
-	exec($commands{$input});
+
+if ($command{$input}) {
+	exec($command{$input});
 	exit 1;
 }
 
