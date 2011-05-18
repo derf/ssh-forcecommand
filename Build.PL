@@ -5,6 +5,7 @@ use warnings;
 use Module::Build;
 
 Module::Build->new(
+
 	build_requires => {
 		'Test::Command' => 0,
 		'Test::Compile' => 0,
@@ -17,5 +18,6 @@ Module::Build->new(
 		'perl' => '5.10.0',
 	},
 	script_files => 'bin/ssh-forcecommand',
+	sign => 1,
 
 )->create_build_script();
