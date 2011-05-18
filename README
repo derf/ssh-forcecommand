@@ -23,7 +23,15 @@ forcecommand for nagios checks, you might want to do this instead:
 
 $ sudo perl Build install --install_path script=/usr/lib/nagios
 
+Usage
+-----
+
+The documentation is available via "perldoc bin/ssh-forcecommand" or (after
+installation) "man ssh-forcecommand".
+
 Testing
 -------
 
-FIXME
+$ perl Build test
+
+Requires the perl modules Test::Command, Test::Compile and Test::More.
