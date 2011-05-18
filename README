@@ -18,8 +18,8 @@ $ perl Build
 $ sudo perl Build install
 
 By default, ssh-forcecommand is installed as /usr/local/bin/ssh-forcecommand.
-In most cases, this does not make sense.  For example, if you are using the
-forcecommand for nagios checks, you might want to do this instead:
+In case you do not want to have in $PATH, you can use --install_path to change
+this. For example, for a nagios forcecommand:
 
 $ sudo perl Build install --install_path script=/usr/local/lib/nagios
 
