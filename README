@@ -21,7 +21,7 @@ By default, ssh-forcecommand is installed as /usr/local/bin/ssh-forcecommand.
 In most cases, this does not make sense.  For example, if you are using the
 forcecommand for nagios checks, you might want to do this instead:
 
-$ sudo perl Build install --install_path script=/usr/lib/nagios
+$ sudo perl Build install --install_path script=/usr/local/lib/nagios
 
 Usage
 -----
