@@ -3,25 +3,24 @@ use strict;
 use warnings;
 
 my $conffile = shift or die("Usage: $0 <configfile>\n");
-my $input = $ENV{SSH_ORIGINAL_COMMAND} or die("No command\n");;
+my $input = $ENV{SSH_ORIGINAL_COMMAND} or die("No command\n");
 
 my %command;
-my $VERSION = '1.0';
+our $VERSION = '1.0';
 
-open(my $conf, '<', $conffile) or die("Can't open $conffile: $!\n");
+open( my $conf, '<', $conffile ) or die("Can't open $conffile: $!\n");
 
-while (my $line = <$conf>) {
-	my ($key, $value) = ($line =~ m{ ^ ([^=]+?) \s* = \s* (.+) $ }x);
+while ( my $line = <$conf> ) {
+	my ( $key, $value ) = ( $line =~ m{ ^ ([^=]+?) \s* = \s* (.+) $ }x );
 
-	if ($key and $value) {
+	if ( $key and $value ) {
 		$command{$key} = $value;
 	}
 }
 close($conf) or die("Cannot close $conffile: $!\n");
 
-
-if ($command{$input}) {
-	exec($command{$input});
+if ( $command{$input} ) {
+	exec( $command{$input} );
 	exit 1;
 }
 
@@ -56,6 +55,15 @@ configuration, which will limit the romet system so that it can only execute a
 set of statically defined commands. This way, compromising the local system is
 made much more diffecult.
 
+=head1 OPTIONS
+
+None.
+
+=head1 EXIT STATUS
+
+If anything goes wrong, B<ssh-forcecommand> returns a non-zero value.
+Otherwise, the exit status of the executed command is returned.
+
 =head1 CONFIGURATION
 
 For every public key you want to restrict to the forcecommand, add a line like
@@ -87,6 +95,15 @@ On your system, this will translate to:
 The forcecommand is 100% static, variables or appending of stuff is not
 supported.  No part of the original ssh command will be dynamically used in
 the resulting command.  This makes ssh-forcecommand quite secure.
+
+=head1 DEPENDENCIES
+
+Nothing besides perl >= 5.10
+
+=head1 BUGS AND LIMITATIONS
+
+As already pointed out, B<ssh-forcecommand> is completely static and does not
+support variables.  This is a design decision and will stay that way.
 
 =head1 AUTHOR
 
