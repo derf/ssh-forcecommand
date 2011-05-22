@@ -2,23 +2,16 @@
 use strict;
 use warnings;
 
+use Config::Tiny;
+
 my $conffile = shift or die("Usage: $0 <configfile>\n");
 my $input = $ENV{SSH_ORIGINAL_COMMAND} or die("No command\n");;
 
-my %command;
 my $VERSION = '1.0';
 
-open(my $conf, '<', $conffile) or die("Can't open $conffile: $!\n");
-
-while (my $line = <$conf>) {
-	my ($key, $value) = ($line =~ m{ ^ ([^=]+?) \s* = \s* (.+) $ }x);
-
-	if ($key and $value) {
-		$command{$key} = $value;
-	}
-}
-close($conf) or die("Cannot close $conffile: $!\n");
-
+my $conf = Config::Tiny->read($conffile)
+  or die "Cannot open $conffile: " . Config::Tiny->errstr() . "\n";
+my %command = %{ $conf->{_} };
 
 if ($command{$input}) {
 	exec($command{$input});

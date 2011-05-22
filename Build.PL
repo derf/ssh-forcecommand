@@ -16,6 +16,7 @@ Module::Build->new(
 	license => 'unrestricted',
 	requires => {
 		'perl' => '5.10.0',
+		'Config::Tiny' => 0,
 	},
 	script_files => 'bin/ssh-forcecommand',
 	sign => 1,
