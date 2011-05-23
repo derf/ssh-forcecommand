@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 my $conffile = shift or die("Usage: $0 <configfile>\n");
-my $input = $ENV{SSH_ORIGINAL_COMMAND} or die("No command\n");
+my $origcmd = $ENV{SSH_ORIGINAL_COMMAND} or die("No command\n");
 
 my %command;
 our $VERSION = '1.0';
@@ -19,11 +19,11 @@ while ( my $line = <$conf> ) {
 }
 close($conf) or die("Cannot close $conffile: $!\n");
 
-if ( not $command{$input} ) {
+if ( not $command{$origcmd} ) {
 	die("Unknown command\n");
 }
 
-exec( $command{$input} );
+exec( $command{$origcmd} );
 
 __END__
 
