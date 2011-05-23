@@ -15,11 +15,11 @@ my $conf = Config::Tiny->read($conffile)
   or die "Cannot open $conffile: " . Config::Tiny->errstr() . "\n";
 my %command = %{ $conf->{_} };
 
-if ($command{$input}) {
-	exec($command{$input});
+if (not $command{$input}) {
+	die("Unknown command\n");
 }
 
-die("Unknown command\n");
+exec($command{$input});
 
 __END__
 
