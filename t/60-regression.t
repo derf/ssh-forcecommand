@@ -35,7 +35,7 @@ test_fc(
 test_fc(
 	in => 'invalid',
 	ret => 1,
-	err => 'Unknown command',
+	err => 'Unknown command: invalid',
 );
 
 test_fc(

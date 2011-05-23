@@ -16,7 +16,7 @@ my $conf = Config::Tiny->read($conffile)
 my %command = %{ $conf->{_} };
 
 if (not $command{$origcmd}) {
-	die "Unknown command\n";
+	die "Unknown command: $origcmd\n";
 }
 
 exec $command{$origcmd};
