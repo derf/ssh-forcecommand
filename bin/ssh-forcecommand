@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
+use autodie qw(exec);
 
 use Config::Tiny;
 
@@ -15,7 +16,6 @@ my %command = %{ $conf->{_} };
 
 if ($command{$input}) {
 	exec($command{$input});
-	exit 1;
 }
 
 die("Unknown command\n");
