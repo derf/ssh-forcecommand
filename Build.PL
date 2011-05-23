@@ -17,6 +17,7 @@ Module::Build->new(
 	requires => {
 		'perl' => '5.10.0',
 		'Config::Tiny' => 0,
+		'autodie' => 0,
 	},
 	script_files => 'bin/ssh-forcecommand',
 	sign => 1,
