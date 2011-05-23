@@ -9,17 +9,17 @@ use autodie qw(exec);
 use Config::Tiny;
 
 my $conffile = shift or die("Usage: $0 <configfile>\n");
-my $input = $ENV{SSH_ORIGINAL_COMMAND} or die("No command\n");
+my $origcmd = $ENV{SSH_ORIGINAL_COMMAND} or die("No command\n");
 
 my $conf = Config::Tiny->read($conffile)
   or die "Cannot open $conffile: " . Config::Tiny->errstr() . "\n";
 my %command = %{ $conf->{_} };
 
-if (not $command{$input}) {
+if (not $command{$origcmd}) {
 	die("Unknown command\n");
 }
 
-exec($command{$input});
+exec($command{$origcmd});
 
 __END__
 
