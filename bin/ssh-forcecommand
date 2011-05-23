@@ -23,7 +23,8 @@ if ( not $command{$origcmd} ) {
 	die("Unknown command: $origcmd\n");
 }
 
-exec( $command{$origcmd} );
+my $cmd = $command{$origcmd} or die "Unknown command: $origcmd\n";
+exec $cmd;
 
 __END__
 
