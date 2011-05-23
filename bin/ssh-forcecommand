@@ -20,7 +20,7 @@ while ( my $line = <$conf> ) {
 close($conf) or die("Cannot close $conffile: $!\n");
 
 if ( not $command{$origcmd} ) {
-	die("Unknown command\n");
+	die("Unknown command: $origcmd\n");
 }
 
 exec( $command{$origcmd} );
