@@ -51,7 +51,7 @@ are not secured via password), where a compromise of the remote system could
 also compromise the local system.
 
 To prevent this, you can invoke ssh-forcecommand through the ssh
-configuration, which will limit the romet system so that it can only execute a
+configuration, which will limit the remote system so that it can only execute a
 set of statically defined commands. This way, compromising the local system is
 made much more diffecult.
 
@@ -80,15 +80,15 @@ script, see the examples directory.
 
 =head1 USAGE
 
-Assume you have the following line in your forcecommand config:
+Assuming you have the following line in your forcecommand config:
 
 	home = tar -C / -cf - home
 
-Now, on the remote system, run this:
+Now, on the remote system, this:
 
 	ssh user@yourhost home
 
-On your system, this will translate to:
+will translate to the following command on the system containing ssh-forcecommand:
 
 	tar -C / -cf - home
 
